@@ -1,0 +1,11 @@
+@import "node_modules/bootswatch/dist/united/variables";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootswatch/dist/united/bootswatch";
+
+form {
+  max-width: 30rem;
+  margin: auto;
+}
+.form-control{
+  @extend .mb-3;
+}
