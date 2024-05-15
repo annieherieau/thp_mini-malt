@@ -10,11 +10,7 @@ export default function Profile() {
     let formData = new FormData(event.target);
     let thisData = {};
     for (const [key, value] of formData.entries()) {
-      if (key === "skills") {
-        thisData[key] = value.split(",");
-      } else {
         thisData[key] = value;
-      }
     }
     setData(thisData);
   };
