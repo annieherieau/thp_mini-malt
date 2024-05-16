@@ -1,13 +1,13 @@
-import { createStoreHook } from "react-redux";
 
-const initialUserState = { firstName: null, lastName: null, fullName: null };
 
+// INITIAL STATE
+const initialUserState = { firstName: null, lastName: null, fullName: 'Inconnu' };
+
+// REDUCER
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
-    case "user/updateName": {
-      if (!action.payload.firstName || !action.payload.lastName) {
-        return { ...state, fullName: null };
-      } else {
+    case "user/updateUserName": {
+      if (action.payload.firstName && action.payload.lastName) {
         return {
           ...state,
           fullName: `${action.payload.firstName} ${action.payload.lastName}`,
@@ -20,5 +20,4 @@ const userReducer = (state = initialUserState, action) => {
     }
   }
 };
-
-const userStore = createStoreHook(userReducer);
+export default userReducer
