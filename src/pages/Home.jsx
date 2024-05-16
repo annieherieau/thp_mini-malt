@@ -1,16 +1,13 @@
-import { Link } from "react-router-dom";
-import store from "../app/store";
+import { useSelector } from "react-redux";
+import UnknownUser from "../components/UnknownUser";
+import UserSkills from "../components/UserSkills";
 
 export default function Home() {
-  const state = store.getState();
-  
-
+  const fullName = useSelector((state) => state.user.fullName);
   return (
-    <div>
-      <h1>Bienvenue</h1>
-      <p>
-        Veuillez remplir <Link to="/profile">votre profil</Link> pour continuer
-      </p>
-    </div>
+    <section>
+      <h1>Bienvenue {fullName}</h1>
+      {fullName ? <UserSkills /> : <UnknownUser />}
+    </section>
   );
 }

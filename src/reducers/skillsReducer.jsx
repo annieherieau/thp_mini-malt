@@ -9,8 +9,8 @@ const skillsReducer = (state = initialSkillsState, action) => {
         const newSkills = action.payload.trim().split(",");
         return {
           ...state,
-          skills: state.skills.concat(newSkills),
-          skillsCount: state.skillsCount + newSkills.length,
+          skills: newSkills,
+          skillsCount: newSkills.length,
         };
       } else {
         return state;

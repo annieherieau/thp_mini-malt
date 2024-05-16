@@ -1,7 +1,7 @@
 
 
 // INITIAL STATE
-const initialUserState = { firstName: null, lastName: null, fullName: 'Inconnu' };
+const initialUserState = { firstName: null, lastName: null, fullName: null };
 
 // REDUCER
 const userReducer = (state = initialUserState, action) => {
