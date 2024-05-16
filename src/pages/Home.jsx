@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
-import UnknownUser from "../components/UnknownUser";
-import UserSkills from "../components/UserSkills";
+import UnknownUser from "../features/user/UnknownUser";
+import UserSkills from "../features/skills/UserSkills";
 
 export default function Home() {
   const fullName = useSelector((state) => state.user.fullName);
+
   return (
     <section>
       <h1>Bienvenue {fullName}</h1>

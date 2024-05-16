@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className="container py-3">
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />

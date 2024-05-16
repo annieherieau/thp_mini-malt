@@ -6,6 +6,31 @@ form {
   max-width: 30rem;
   margin: auto;
 }
+
+#root {
+  @extend .d-flex, .flex-column, .min-vh-100;
+}
+main{
+  @extend .container, .py-3;
+}
+footer {
+  @extend .mt-auto, .text-center;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 700;
+}
+
+.remove {
+  cursor: pointer;
+}
+
+.li-skill-item {
+  @extend .d-flex, .justify-content-between, .align-items-start;
+  max-width: 30em;
+  
+}
 .form-control {
   @extend .mb-3;
 }
@@ -16,6 +41,6 @@ form {
 .navbar-nav {
   @extend .me-auto, .gap-3, .align-items-center;
 }
-.active{
+.active {
   color: $white;
 }

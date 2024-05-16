@@ -1,7 +1,7 @@
 
 
 // INITIAL STATE
-const initialUserState = { firstName: null, lastName: null, fullName: null };
+export const initialUserState = { firstName: null, lastName: null, fullName: null };
 
 // REDUCER
 const userReducer = (state = initialUserState, action) => {
@@ -16,6 +16,10 @@ const userReducer = (state = initialUserState, action) => {
       }
     }
 
+    case "user/deleteUser":{
+      return initialUserState;
+    }
+    
     default: {
       return state;
     }

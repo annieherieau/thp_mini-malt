@@ -16,7 +16,7 @@ const skillsReducer = (state = initialSkillsState, action) => {
         return state;
       }
     }
-    case "skills/removeSkills": {
+    case "skills/removeSkill": {
       const leftSkills = state.skills.filter(
         (skill) => skill !== action.payload
       );

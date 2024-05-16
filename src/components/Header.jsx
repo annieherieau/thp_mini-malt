@@ -1,7 +1,7 @@
 import {Container, Nav, Navbar } from "react-bootstrap";
 
 import { NavLink } from "react-router-dom";
-import NavUserInfos from "./NavUserInfos";
+import NavUserInfos from "../features/user/NavUserInfos";
 
 export default function Header() {
   
@@ -21,11 +21,9 @@ export default function Header() {
               <Nav.Item>
                 <NavLink to="/profile">Profile</NavLink>
               </Nav.Item>
-              <Nav.Item>
-                <NavUserInfos />
-              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
+          <NavUserInfos />
         </Container>
       </Navbar>
     </header>

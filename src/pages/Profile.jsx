@@ -1,52 +1,64 @@
 import { useState } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { updateUserName } from "../actions/userActions";
-import { addSkills } from "../actions/skillsActions";
+import { deleteUser, updateUserName } from "../features/user/userActions";
+import { addSkills, removeAllSkills } from "../features/skills/skillsActions";
 import { useSelector } from "react-redux";
+import { clearLocalStorage } from "../app/store";
 
 export default function Profile() {
-  // récupères des données du user
-  const getUserData = () => {
-    const user = useSelector((state) => state.user);
-    const skills = useSelector((state) => state.skills.skills);
-    return {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      skills: skills.join(","),
-    };
-  };
-  const [data, setData] = useState(getUserData());
+  // STORE : récupère des données du user
 
+  const user = useSelector((state) => state.user);
+  const skills = useSelector((state) => state.skills.skills).join(",");
+  const dispatch = useDispatch(); // pour exécuter les actions et modifier le store
+
+  // afichage du message enregistrement ok
   const [showAlert, setShowAlert] = useState(false);
-  const dispatch = useDispatch();
 
+  // Soumission du formulaire
   const handleSubmit = (event) => {
     event.preventDefault();
+    // récupérer les données du formulaire
     let formData = new FormData(event.target);
     let thisData = {};
     for (const [key, value] of formData.entries()) {
       thisData[key] = value;
     }
 
-    // store.dispatch
+    // store.dispatch(action)
     dispatch(updateUserName(thisData.firstName, thisData.lastName));
-    dispatch(addSkills(thisData.skills));
-    setData(thisData);
+    if (thisData.skills === "") {
+      dispatch(removeAllSkills());
+    } else {
+      dispatch(addSkills(thisData.skills));
+    }
+
+    // afficher le message d'enregistrement ok
     setShowAlert(true);
   };
 
+  // suprimer le profil
+  const handleDelete = (event) => {
+    dispatch(deleteUser());
+    dispatch(removeAllSkills());
+    clearLocalStorage();
+    event.target.parentNode.reset();
+  };
+
   return (
-    <div>
+    <section>
       <h1>Profile</h1>
-      <Form onSubmit={handleSubmit}>
+
+      <Form className="form-profile" onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Prénom</Form.Label>
           <FormControl
             type="text"
             name="firstName"
-            defaultValue={data ? data.firstName : ""} required
-            onChange={()=> setShowAlert(false)}
+            defaultValue={user.firstName ? user.firstName : ""}
+            required
+            onChange={() => setShowAlert(false)}
           />
         </Form.Group>
         <Form.Group>
@@ -54,22 +66,26 @@ export default function Profile() {
           <FormControl
             type="text"
             name="lastName"
-            defaultValue={data ? data.lastName : ""} required
-            onChange={()=> setShowAlert(false)}
+            defaultValue={user.lastName ? user.lastName : ""}
+            required
+            onChange={() => setShowAlert(false)}
           />
         </Form.Group>
         <Form.Group>
           <Form.Label>Compétences</Form.Label>
           <FormControl
-            type="text"
+            type="search"
             name="skills"
-            defaultValue={data ? data.skills : ""}
-            onChange={()=> setShowAlert(false)}
+            defaultValue={skills}
+            onChange={() => setShowAlert(false)}
           />
         </Form.Group>
         <Button type="submit">Enregistrer</Button>
-        {showAlert && <p><small className="text-success">OK enregistré</small></p>}
+        {showAlert && <small className="text-success">OK enregistré</small>}
+        <Button className="float-end" variant="danger" onClick={handleDelete}>
+          Supprimer mon Profil
+        </Button>
       </Form>
-    </div>
+    </section>
   );
 }
