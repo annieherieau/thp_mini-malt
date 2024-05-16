@@ -15,7 +15,7 @@ export default function Header() {
             <Nav>
               <Nav.Item>
                 <NavLink to="/">
-                  Home
+                  Accueil
                 </NavLink>
               </Nav.Item>
               <Nav.Item>

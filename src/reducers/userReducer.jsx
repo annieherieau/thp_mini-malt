@@ -9,7 +9,8 @@ const userReducer = (state = initialUserState, action) => {
     case "user/updateUserName": {
       if (action.payload.firstName && action.payload.lastName) {
         return {
-          ...state,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
           fullName: `${action.payload.firstName} ${action.payload.lastName}`,
         };
       }
