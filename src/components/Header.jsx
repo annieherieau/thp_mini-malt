@@ -12,9 +12,9 @@ export default function Header() {
           <Navbar.Brand href="/">Logo</Navbar.Brand>
           <Navbar.Toggle aria-controls="app-navbar" />
           <Navbar.Collapse id="app-navbar">
-            <Nav className="me-auto gap-3">
+            <Nav>
               <Nav.Item>
-                <NavLink className="active" to="/">
+                <NavLink to="/">
                   Home
                 </NavLink>
               </Nav.Item>

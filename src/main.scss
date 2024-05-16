@@ -13,3 +13,9 @@ form {
 .nav-user-infos {
   @extend .text-light, .text-center;
 }
+.navbar-nav {
+  @extend .me-auto, .gap-3, .align-items-center;
+}
+.active{
+  color: $white;
+}
