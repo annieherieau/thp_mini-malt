@@ -6,7 +6,7 @@ const skillsReducer = (state = initialSkillsState, action) => {
   switch (action.type) {
     case "skills/addSkills": {
       if (action.payload) {
-        const newSkills = action.payload.split(",");
+        const newSkills = action.payload.trim().split(",");
         return {
           ...state,
           skills: state.skills.concat(newSkills),

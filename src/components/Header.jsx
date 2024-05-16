@@ -1,10 +1,10 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import {Container, Nav, Navbar } from "react-bootstrap";
+
 import { NavLink } from "react-router-dom";
+import NavUserInfos from "./NavUserInfos";
 
 export default function Header() {
-  const userFirstname = useSelector((state) => state.user.firstname);
-  console.log(userFirstname);
+  
   return (
     <header>
       <Navbar expand="lg" className="bg-primary" data-bs-theme="dark">
@@ -21,7 +21,9 @@ export default function Header() {
               <Nav.Item>
                 <NavLink to="/profile">Profile</NavLink>
               </Nav.Item>
-              <Nav.Item></Nav.Item>
+              <Nav.Item>
+                <NavUserInfos />
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>

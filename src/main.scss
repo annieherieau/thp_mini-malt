@@ -6,6 +6,10 @@ form {
   max-width: 30rem;
   margin: auto;
 }
-.form-control{
+.form-control {
   @extend .mb-3;
+}
+
+.nav-user-infos {
+  @extend .text-light, .text-center;
 }
